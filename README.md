@@ -35,6 +35,7 @@ Backend system for managing insurance policies, clients, and claims using Node.j
 **Steps:**
 
 - Create a project folder and open in VS Code.
+- git clone https://github.com/Abigaelchemtai/INSURANCE-CLAIMS-API.git
 - Initialize Node.js and TypeScript.
 - Install dependencies for backend development.
 
