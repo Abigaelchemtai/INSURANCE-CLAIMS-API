@@ -1,4 +1,4 @@
-# Insurance Claims API
+# Insurance Claims API – Backend Setup & Testing
 
 Backend system for managing insurance policies, clients, and claims using Node.js, TypeScript, and MongoDB.
 
