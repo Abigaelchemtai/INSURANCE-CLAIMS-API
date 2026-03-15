@@ -1,0 +1,278 @@
+{
+  "info": {
+    "_postman_id": "ba90b25d-d310-42dc-b9c7-c65274e62a1e",
+    "name": "Insurance Claims",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "30684463"
+  },
+  "item": [
+    {
+      "name": "Create Client",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"clientId\": \"C001\",\r\n  \"name\": \"Abigael Chemtai\",\r\n  \"email\": \"abigael@example.com\",\r\n  \"dateOfBirth\": \"1990-05-10\",\r\n  \"address\": \"123 Nairobi St, Nairobi, Kenya\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/clients",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "clients"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Policy",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"policyId\": \"P001\",\r\n  \"clientId\": \"69b5bc8e54db63bb97bf39bc\", \r\n  \"policyNumber\": \"POL123\",\r\n  \"policyType\": \"life\",\r\n  \"startDate\": \"2026-01-01\",\r\n  \"endDate\": \"2027-01-01\",\r\n  \"premiumAmount\": 1000,\r\n  \"coverageAmount\": 50000,\r\n  \"status\": \"active\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/policies",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "policies"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Submit Claim",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"claimId\": \"CL001\",\r\n  \"policyId\": \"69b5c3279e13c4de99a62194\",\r\n  \"clientId\": \"69b5bc8e54db63bb97bf39bc\",\r\n  \"claimDate\": \"2026-03-14\",\r\n  \"claimAmount\": 10000,\r\n  \"status\": \"submitted\",\r\n  \"description\": \"Hospital expenses\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/claims",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "claims"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Process Claim",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"claimId\": \"CL001\",\r\n  \"action\": \"approve\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/claims/process",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "claims",
+            "process"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Retrieve Client Claims",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "[\r\n  {\r\n    \"_id\": \"submitted\",\r\n    \"totalClaims\": 1,\r\n    \"claims\": [\r\n      {\r\n        \"claimId\": \"CL001\",\r\n        \"policyId\": \"<_id from Step 2>\",\r\n        \"clientId\": \"<_id from Step 1>\",\r\n        \"claimDate\": \"2026-03-14T00:00:00.000Z\",\r\n        \"claimAmount\": 10000,\r\n        \"status\": \"submitted\",\r\n        \"description\": \"Hospital expenses\"\r\n      }\r\n    ]\r\n  }\r\n]",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/claims/client/69b5bc8e54db63bb97bf39bc",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "claims",
+            "client",
+            "69b5bc8e54db63bb97bf39bc"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Total Premium Client",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/policies/premium/69b5bc8e54db63bb97bf39bc",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "policies",
+            "premium",
+            "69b5bc8e54db63bb97bf39bc"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Total Claims by Policy Type",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:5000/api/claims/claims-by-policy-type",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "claims",
+            "claims-by-policy-type"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
