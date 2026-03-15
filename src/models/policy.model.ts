@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 
-// Enums for policy type and status
 export enum PolicyType {
   LIFE = "life",
   HEALTH = "health",
@@ -14,7 +13,7 @@ export enum PolicyStatus {
   CANCELLED = "cancelled",
 }
 
-// Policy schema
+
 const policySchema = new mongoose.Schema({
   policyId: { type: String, required: true, unique: true },
   clientId: { type: mongoose.Schema.Types.ObjectId, ref: "Client", required: true },
